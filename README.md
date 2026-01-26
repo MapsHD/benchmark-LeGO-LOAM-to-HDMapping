@@ -17,14 +17,12 @@ git checkout Bunker-DVI-Dataset-reg-1
 docker build -t lego-loam_noetic .
 ```
 
-## Step 3 (run docker)
+## Step 3 (run docker, file 'reg-1.bag-pc.bag' should be in '~/hdmapping-benchmark/data')
 ```shell
 cd ~/hdmapping-benchmark/benchmark-LeGO-LOAM-to-HDMapping
 chmod +x docker_session_run-ros1-lego-loam.sh 
-mkdir -p ~/hdmapping-benchmark/data
 cd ~/hdmapping-benchmark/data
-cp <data_folder>/reg-1.bag-pc.bag .   
-./docker_session_run-ros1-lego-loam.sh reg-1.bag-pc.bag .
+~/hdmapping-benchmark/benchmark-LeGO-LOAM-to-HDMapping/docker_session_run-ros1-lego-loam.sh reg-1.bag-pc.bag .
 ```
 
 ## Step 4 (Open and visualize data)
