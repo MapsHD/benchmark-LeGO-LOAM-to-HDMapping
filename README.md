@@ -16,9 +16,9 @@ docker build -t lego-loam_noetic .
 
 ## Step 3 (run docker)
 ```shell
-cd ros_ws/src/benchmark-LeGO-LOAM-to-HDMapping
+cd ~/hdmapping-benchmark/benchmark-LeGO-LOAM-to-HDMapping
 chmod +x docker_session_run-ros1-lego-loam.sh 
-docker_session_run-ros1-lego-loam.sh <input_bag> <output_folder>
+./docker_session_run-ros1-lego-loam.sh <input_bag> <output_folder>
 ```
 
 ## Step 4 (Open and visualize data)
@@ -68,8 +68,8 @@ docker build -t lego-loam_noetic .
 ```shell
 cd ros_ws/src/benchmark-LeGO-LOAM-to-HDMapping
 chmod +x docker_session_run-ros1-lego-loam.sh 
-docker_session_run-ros1-lego-loam.sh <input_bag> <output_folder>
+./docker_session_run-ros1-lego-loam.sh <input_bag> <output_folder>
 
 # For usage instructions or options, you can run:
-docker_session_run-ros1-lego-loam.sh --help
+./docker_session_run-ros1-lego-loam.sh --help
 ```
