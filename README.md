@@ -5,7 +5,8 @@ This branch is for processing reg-1.bag dataset.
 Download the dataset `reg-1.bag` by clicking [link](https://cloud.cylab.be/public.php/dav/files/7PgyjbM2CBcakN5/reg-1.bag) (it is part of [Bunker DVI Dataset](https://charleshamesse.github.io/bunker-dvi-dataset)) and convert with [tool](https://github.com/MapsHD/livox_bag_aggregate) to 'reg-1.bag-pc.bag'.
 
 File 'reg-1.bag-pc.bag' is an input for further calculations.
-Please remember location of <data_folder> with file 'reg-1.bag-pc.bag'.
+It should be located in '~/hdmapping-benchmark/data'.
+
 
 ## Step 2 (prepare docker)
 ```shell
