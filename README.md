@@ -10,6 +10,7 @@ mkdir -p ros_ws/src/
 cd ros_ws/src/
 git clone https://github.com/MapsHD/benchmark-LeGO-LOAM-to-HDMapping.git --recursive
 cd benchmark-LeGO-LOAM-to-HDMapping
+git checkout Bunker-DVI-Dataset-reg-1
 docker build -t lego-loam_noetic .
 ```
 
