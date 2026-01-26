@@ -22,6 +22,7 @@ chmod +x docker_session_run-ros1-lego-loam.sh
 ```
 
 ## Step 4 (Open and visualize data)
+Expected data should appear in <output_folder>/output_hdmapping-lego-loam
 Use tool [multi_view_tls_registration_step_2](https://github.com/MapsHD/HDMapping) to open session.json from <output_folder>.
 
 # LeGO-LOAM-converter
