@@ -18,7 +18,10 @@ docker build -t lego-loam_noetic .
 ```shell
 cd ~/hdmapping-benchmark/benchmark-LeGO-LOAM-to-HDMapping
 chmod +x docker_session_run-ros1-lego-loam.sh 
-./docker_session_run-ros1-lego-loam.sh <input_bag> <output_folder>
+mkdir -p ~/hdmapping-benchmark/data
+cd ~/hdmapping-benchmark/data
+cp reg-1.bag-pc.bag .   
+./docker_session_run-ros1-lego-loam.sh reg-1.bag-pc.bag .
 ```
 
 ## Step 4 (Open and visualize data)
