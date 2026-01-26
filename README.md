@@ -6,8 +6,8 @@ Download the dataset `reg-1.bag` by clicking [link](https://cloud.cylab.be/publi
 
 ## Step 2 (prepare docker)
 ```shell
-mkdir -p ros_ws/src/
-cd ros_ws/src/
+mkdir -p ~/hdmapping-benchmark
+cd ~/hdmapping-benchmark
 git clone https://github.com/MapsHD/benchmark-LeGO-LOAM-to-HDMapping.git --recursive
 cd benchmark-LeGO-LOAM-to-HDMapping
 git checkout Bunker-DVI-Dataset-reg-1
