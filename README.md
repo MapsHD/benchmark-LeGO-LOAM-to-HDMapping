@@ -2,7 +2,7 @@
 This branch is for processing reg-1.bag dataset.
 
 ## Step 1 (prepare data)
-Download the dataset `reg-1.bag` by clicking [link](https://cloud.cylab.be/public.php/dav/files/7PgyjbM2CBcakN5/reg-1.bag) from [Bunker DVI Dataset](https://charleshamesse.github.io/bunker-dvi-dataset) and convert with [tool](https://github.com/MapsHD/livox_bag_aggregate).
+Download the dataset `reg-1.bag` by clicking [link](https://cloud.cylab.be/public.php/dav/files/7PgyjbM2CBcakN5/reg-1.bag) (it is part of [Bunker DVI Dataset](https://charleshamesse.github.io/bunker-dvi-dataset)) and convert with [tool](https://github.com/MapsHD/livox_bag_aggregate).
 
 ## Step 2 (prepare docker)
 ```shell
