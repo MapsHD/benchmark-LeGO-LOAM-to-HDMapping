@@ -31,7 +31,6 @@ Use tool [multi_view_tls_registration_step_2](https://github.com/MapsHD/HDMappin
 
 You should see following data in '~/hdmapping-benchmark/data/output_hdmapping-lego-loam'
 
---
 lio_initial_poses.reg
 
 poses.reg
@@ -41,7 +40,7 @@ scan_lio_*.laz
 session.json
 
 trajectory_lio_*.csv
---
+
 
 ## Movie (end-to-end experiment)
 
