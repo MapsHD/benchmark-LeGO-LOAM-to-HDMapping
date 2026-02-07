@@ -29,53 +29,22 @@ cd ~/hdmapping-benchmark/data
 Expected data should appear in ~/hdmapping-benchmark/data/output_hdmapping-lego-loam
 Use tool [multi_view_tls_registration_step_2](https://github.com/MapsHD/HDMapping) to open session.json from ~/hdmapping-benchmark/data/output_hdmapping-lego-loam.
 
-You should see following data
+You should see following data in '~/hdmapping-benchmark/data/output_hdmapping-lego-loam'
 
+--
 lio_initial_poses.reg
 
 poses.reg
 
-scan_lio_0.laz
-
-scan_lio_1.laz
-
-scan_lio_2.laz
-
-scan_lio_3.laz
-
-scan_lio_4.laz
-
-scan_lio_5.laz
-
-scan_lio_6.laz
-
-scan_lio_7.laz
-
-scan_lio_8.laz
-
-scan_lio_9.laz
+scan_lio_*.laz
 
 session.json
 
-trajectory_lio_0.csv
+trajectory_lio_*.csv
+--
 
-trajectory_lio_1.csv
+## Movie (end-to-end experiment)
 
-trajectory_lio_2.csv
-
-trajectory_lio_3.csv
-
-trajectory_lio_4.csv
-
-trajectory_lio_5.csv
-
-trajectory_lio_6.csv
-
-trajectory_lio_7.csv
-
-trajectory_lio_8.csv
-
-trajectory_lio_9.csv
 
 ## Contact email
 januszbedkowski@gmail.com
