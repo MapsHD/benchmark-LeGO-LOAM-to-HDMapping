@@ -1,49 +1,46 @@
-# LeGO-LOAM-converter
+# LeGO-LOAM to HDMapping simlified instruction
 
+## Step 1 (prepare data)
+Download the dataset `kitti_seq00_ros1.bag` by clicking [link](https://huggingface.co/datasets/kubchud/kitti_to_ros/resolve/main/kitti_seq00_ros1.bag) (it is part of [kitti_seq](https://github.com/Jakubach/kitti_to_ros)).
 
-## Example Dataset: 
+### Extract the dataset
 
-Download the dataset `reg-1.bag` by clicking [here](https://cloud.cylab.be/public.php/dav/files/7PgyjbM2CBcakN5/reg-1.bag) from [Bunker DVI Dataset](https://charleshamesse.github.io/bunker-dvi-dataset).
+File `kitti_seq00_ros1.bag` is an input for further calculations.
+It should be located in `~/hdmapping-benchmark/data`.  
 
-## Intended use 
-
-This small toolset allows to integrate SLAM solution provided by [LeGO-LOAM](https://github.com/RobustFieldAutonomyLab/LeGO-LOAM) with [HDMapping](https://github.com/MapsHD/HDMapping).
-This repository contains ROS 1 workspace that :
-  - submodule to tested revision of LeGO-LOAM
-  - a converter that listens to topics advertised from odometry node and save data in format compatible with HDMapping.
-
-## Dependencies
-
+## Step 2 (prepare docker)
 ```shell
-sudo apt update
-sudo apt install -y docker.io
-sudo usermod -aG docker $USER
-```
-
-## Convert ros1 CustomMsg to PointCloud2
-
-For usage instructions, click [here](https://github.com/MapsHD/livox_bag_aggregate).
-
-## Workspace
-
-```shell
-mkdir -p ros_ws/src/
-cd ros_ws/src/
+mkdir -p ~/hdmapping-benchmark
+cd ~/hdmapping-benchmark
 git clone https://github.com/MapsHD/benchmark-LeGO-LOAM-to-HDMapping.git --recursive
-```
-
-## Docker build
-```shell
-cd ros_ws/src/benchmark-LeGO-LOAM-to-HDMapping
+cd benchmark-LeGO-LOAM-to-HDMapping
+git checkout kitti
 docker build -t lego-loam_noetic .
 ```
 
-## Docker run
+## Step 3 (run docker, file 'kitti_seq00_ros1.bag' should be in '~/hdmapping-benchmark/data')
 ```shell
-cd ros_ws/src/benchmark-LeGO-LOAM-to-HDMapping
+cd ~/hdmapping-benchmark/benchmark-LeGO-LOAM-to-HDMapping
 chmod +x docker_session_run-ros1-lego-loam.sh 
-docker_session_run-ros1-lego-loam.sh <input_bag> <output_folder>
-
-# For usage instructions or options, you can run:
-docker_session_run-ros1-lego-loam.sh --help
+cd ~/hdmapping-benchmark/data
+~/hdmapping-benchmark/benchmark-LeGO-LOAM-to-HDMapping/docker_session_run-ros1-lego-loam.sh kitti_seq00_ros1.bag .
 ```
+
+## Step 4 (Open and visualize data)
+Expected data should appear in ~/hdmapping-benchmark/data/output_hdmapping-lego-loam
+Use tool [multi_view_tls_registration_step_2](https://github.com/MapsHD/HDMapping) to open session.json from ~/hdmapping-benchmark/data/output_hdmapping-lego-loam.
+
+You should see following data in '~/hdmapping-benchmark/data/output_hdmapping-lego-loam'
+
+lio_initial_poses.reg
+
+poses.reg
+
+scan_lio_*.laz
+
+session.json
+
+trajectory_lio_*.csv
+
+## Contact email
+januszbedkowski@gmail.com

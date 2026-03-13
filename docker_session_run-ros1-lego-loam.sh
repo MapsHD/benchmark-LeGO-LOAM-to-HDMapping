@@ -93,7 +93,7 @@ echo "[record] exit"
 source /opt/ros/noetic/setup.bash
 source /ros_ws/devel/setup.bash
 echo "[play] start"
-rosbag play '"$DATASET_CONTAINER_PATH"' --topic /livox/pointcloud; tmux wait-for -S BAG_DONE;
+rosbag play '"$DATASET_CONTAINER_PATH"'; tmux wait-for -S BAG_DONE;
 echo "[play] done"
 '\'' C-m
 

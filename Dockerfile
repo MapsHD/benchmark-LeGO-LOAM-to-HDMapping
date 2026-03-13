@@ -94,11 +94,6 @@ RUN PKG=/ros_ws/src/LeGO-LOAM/LeGO-LOAM && \
         $PKG/include/utility.h > /tmp/utility.h && mv /tmp/utility.h $PKG/include/utility.h)
 
 RUN PKG=/ros_ws/src/LeGO-LOAM/LeGO-LOAM && \
-    sed -i 's|extern const string pointCloudTopic = "/velodyne_points";|extern const string pointCloudTopic = "/livox/pointcloud";|' $PKG/include/utility.h && \
-    sed -i 's|extern const string imuTopic = "/imu/data";|extern const string imuTopic = "/livox/imu";|' $PKG/include/utility.h && \
-    sed -i 's|extern const bool useCloudRing = true;|extern const bool useCloudRing = false;|' $PKG/include/utility.h
-
-RUN PKG=/ros_ws/src/LeGO-LOAM/LeGO-LOAM && \
     sed -i 's|/camera_init|camera_init|g' $PKG/launch/run.launch
 
 RUN PKG=/ros_ws/src/LeGO-LOAM/LeGO-LOAM && \
