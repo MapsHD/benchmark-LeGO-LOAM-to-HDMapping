@@ -93,10 +93,33 @@ RUN PKG=/ros_ws/src/LeGO-LOAM/LeGO-LOAM && \
     (awk '/opencv2\/opencv.hpp/ { print; print "#include <eigen3/Eigen/Core>"; print "#include <eigen3/Eigen/Dense>"; print "#include <eigen3/Eigen/Geometry>"; next }1' \
         $PKG/include/utility.h > /tmp/utility.h && mv /tmp/utility.h $PKG/include/utility.h)
 
-RUN PKG=/ros_ws/src/LeGO-LOAM/LeGO-LOAM && \
-    sed -i 's|extern const string pointCloudTopic = "/velodyne_points";|extern const string pointCloudTopic = "/livox/pointcloud";|' $PKG/include/utility.h && \
-    sed -i 's|extern const string imuTopic = "/imu/data";|extern const string imuTopic = "/livox/imu";|' $PKG/include/utility.h && \
-    sed -i 's|extern const bool useCloudRing = true;|extern const bool useCloudRing = false;|' $PKG/include/utility.h
+# Canonical bag: LeGO-LOAM's sensor description is the constants in
+# include/utility.h. Start from its default block (VLP-16) and describe the
+# canonical Hesai QT64: topics, the real `ring` (useCloudRing stays true), 64
+# rings bottom-up from -52.5 to +52.1 deg, 600 columns (0.6 deg), ground rings
+# 0..31 (below the horizon, as groundScanInd 7 is for the VLP-16), minimum range
+# 0.5 m. The build fails if any of these lines changes upstream.
+RUN f=/ros_ws/src/LeGO-LOAM/LeGO-LOAM/include/utility.h && \
+    for l in 'extern const string pointCloudTopic = "/velodyne_points";' \
+             'extern const string imuTopic = "/imu/data";' \
+             'extern const int N_SCAN = 16;' \
+             'extern const int Horizon_SCAN = 1800;' \
+             'extern const float ang_res_x = 0.2;' \
+             'extern const float ang_res_y = 2.0;' \
+             'extern const float ang_bottom = 15.0+0.1;' \
+             'extern const int groundScanInd = 7;' \
+             'extern const float sensorMinimumRange = 1.0;'; do \
+        [ "$(grep -c "^$l" $f)" = 1 ] || { echo "utility.h changed: $l"; exit 1; }; \
+    done && \
+    sed -i -e 's|^extern const string pointCloudTopic = "/velodyne_points";|extern const string pointCloudTopic = "/lidar/pointcloud";|' \
+           -e 's|^extern const string imuTopic = "/imu/data";|extern const string imuTopic = "/lidar/imu";|' \
+           -e 's|^extern const int N_SCAN = 16;|extern const int N_SCAN = 64;|' \
+           -e 's|^extern const int Horizon_SCAN = 1800;|extern const int Horizon_SCAN = 600;|' \
+           -e 's|^extern const float ang_res_x = 0.2;|extern const float ang_res_x = 360.0/float(Horizon_SCAN);|' \
+           -e 's|^extern const float ang_res_y = 2.0;|extern const float ang_res_y = 104.6/float(N_SCAN-1);|' \
+           -e 's|^extern const float ang_bottom = 15.0+0.1;|extern const float ang_bottom = 52.5+0.1;|' \
+           -e 's|^extern const int groundScanInd = 7;|extern const int groundScanInd = 31;|' \
+           -e 's|^extern const float sensorMinimumRange = 1.0;|extern const float sensorMinimumRange = 0.5;|' $f
 
 RUN PKG=/ros_ws/src/LeGO-LOAM/LeGO-LOAM && \
     sed -i 's|/camera_init|camera_init|g' $PKG/launch/run.launch

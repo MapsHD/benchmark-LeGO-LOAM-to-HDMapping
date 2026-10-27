@@ -61,6 +61,7 @@ docker run -it --rm \
   --network host \
   -e DISPLAY=$DISPLAY \
   -e ROS_HOME=/tmp/.ros \
+  -e DISABLE_ROS1_EOL_WARNINGS=1 \
   -u 1000:1000 \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   -v "$DATASET_HOST_PATH":"$DATASET_CONTAINER_PATH":ro \
@@ -93,7 +94,7 @@ echo "[record] exit"
 source /opt/ros/noetic/setup.bash
 source /ros_ws/devel/setup.bash
 echo "[play] start"
-rosbag play '"$DATASET_CONTAINER_PATH"' --topic /livox/pointcloud; tmux wait-for -S BAG_DONE;
+rosbag play '"$DATASET_CONTAINER_PATH"' --topic /lidar/pointcloud; tmux wait-for -S BAG_DONE;
 echo "[play] done"
 '\'' C-m
 
@@ -120,6 +121,7 @@ docker run -it --rm \
   --network host \
   -e DISPLAY="$DISPLAY" \
   -e ROS_HOME=/tmp/.ros \
+  -e DISABLE_ROS1_EOL_WARNINGS=1 \
   -u 1000:1000 \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   -v "$BAG_OUTPUT_HOST":"$BAG_OUTPUT_CONTAINER" \
